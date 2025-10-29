@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    tools:context=".Register"
+    android:backgroundTint="#FFF8E1">
 
         <Button
             android:id="@+id/btnTermos"
@@ -13,7 +14,7 @@
             android:layout_height="41dp"
             android:layout_marginTop="1dp"
             android:layout_marginRight="155dp"
-            android:backgroundTint="#FFF8E1"
+            android:backgroundTint="#FDFDFC"
             android:paddingStart="1dp"
             android:paddingTop="10.2dp"
             android:text="Termos e Condições"
@@ -189,7 +190,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-1dp"
             android:layout_marginRight="90dp"
-            android:backgroundTint="#FFF8E1"
+            android:backgroundTint="#FDFDFC"
             android:paddingStart="1dp"
             android:paddingTop="10.2dp"
             android:text="Faça login"

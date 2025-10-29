@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.angelastore"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.angelastore"
@@ -32,6 +32,8 @@ android {
 }
 
 dependencies {
+
+    implementation("com.squareup.picasso:picasso:2.8")
 
     implementation(libs.appcompat)
     implementation(libs.material)
