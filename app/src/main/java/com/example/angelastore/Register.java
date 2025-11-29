@@ -51,7 +51,7 @@ public class Register extends AppCompatActivity {
         btnRegistrar = findViewById(R.id.btnCadastrar);
         btnGoLogin = findViewById(R.id.btnGoCadastro);
         buttonVoltar = findViewById(R.id.btnVoltar);
-        errorMessageRegister = findViewById(R.id.registerErrorMessage);
+        errorMessageRegister = findViewById(R.id.registerErrorMessage);//
 
         buttonVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
