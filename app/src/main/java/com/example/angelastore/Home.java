@@ -17,10 +17,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends AppCompatActivity {
 
-    ArrayList<Produto> produtos;
+    ArrayList<Product> produtos = new ArrayList<>();
+    MeuAdaptador adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,47 +38,40 @@ public class Home extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Button btnLogin = findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        Button btnCarrinho = findViewById(R.id.btnCarrinho);
+        btnCarrinho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home.this, Login.class);
+                Intent intent = new Intent(Home.this, Carrinho.class);
                 startActivity(intent);
             }
         });
 
-        gerarProdutos();
-
         RecyclerView rvProdutos = findViewById(R.id.rvProdutos);
-        MeuAdaptador adaptador = new MeuAdaptador(produtos);
-        RecyclerView.LayoutManager layout =
-                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        rvProdutos.setLayoutManager(layout);
-        rvProdutos.setAdapter(adaptador);
+        adaptador = new MeuAdaptador(produtos);
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         rvProdutos.setLayoutManager(layoutManager);
+        rvProdutos.setAdapter(adaptador);
 
-
-
+        carregarProdutos();
     }
-    private void gerarProdutos() {
-        produtos = new ArrayList<Produto>();
-        criarProduto("Essencial", "Perfume floral com toque cítrico", "Natura", 89.90, R.drawable.img_essencial);
-        criarProduto("Ekos", "Creme hidratante para o corpo", "Natura", 39.90, R.drawable.img_ekos);
-        criarProduto("Ekos", "Creme hidratante para o corpo", "Natura", 39.90, R.drawable.img_ekos);
-        criarProduto("Ekos", "Creme hidratante para o corpo", "Natura", 39.90, R.drawable.img_ekos);
-        criarProduto("Ekos", "Creme hidratante para o corpo", "Natura", 39.90, R.drawable.img_ekos);
-        criarProduto("Ekos", "Creme hidratante para o corpo", "Natura", 39.90, R.drawable.img_ekos);
-        criarProduto("Ekos", "Creme hidratante para o corpo", "Natura", 39.90, R.drawable.img_ekos);
-        criarProduto("Ekos", "Creme hidratante para o corpo", "Natura", 39.90, R.drawable.img_ekos);
-        criarProduto("Ekos", "Creme hidratante para o corpo", "Natura", 39.90, R.drawable.img_ekos);
-        criarProduto("Ekos", "Creme hidratante para o corpo", "Natura", 39.90, R.drawable.img_ekos);
+        private void carregarProdutos(){
+            Call<ApiEnvelopeProducts> call =  RetrofitClient.getInstance().getApi().listProducts();
 
-    }
-
-    private void criarProduto(String nome, String descricao, String marca, double preco, int foto) {
-        Produto produto = new Produto(nome, descricao, marca, preco, foto);
-        produtos.add(produto);
-    }
+        call.enqueue(new Callback<ApiEnvelopeProducts>() {
+            @Override
+            public void onResponse(Call<ApiEnvelopeProducts> call, Response<ApiEnvelopeProducts> response) {
+                if (response.body() != null){
+                    produtos.clear();
+                    produtos.addAll(response.body().getData().getProducts());
+                    adaptador.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onFailure(Call<ApiEnvelopeProducts> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+        }
 }
