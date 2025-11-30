@@ -91,12 +91,12 @@
             app:srcCompat="@drawable/img_lupa" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnCarrinho"
             android:layout_width="94dp"
             android:layout_height="44dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="#FFF8E1"
-            android:text="Entrar"
+            android:text="🛒"
             android:textColor="#d45c94"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -143,6 +143,12 @@
                 android:text="Confira agora"
                 app:cornerRadius="5dp" />
         </LinearLayout>
+
+            <FrameLayout
+            android:id="@+id/containerPrincipal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProdutos"

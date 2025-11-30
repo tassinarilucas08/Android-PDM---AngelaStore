@@ -116,7 +116,7 @@ public class Register extends AppCompatActivity {
 
                     if (env.getType().equals("success")) {
                         errorMessageRegister.setTextColor(Color.parseColor("#2ECC71"));
-                        errorMessageRegister.setText(env.getMessage());
+                        errorMessageRegister.setText(env.getMessage() + ". Confirme o email e depois faça o login");
                     }else{
                         errorMessageRegister.setText(env.getMessage());
                         return;

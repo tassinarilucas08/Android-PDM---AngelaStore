@@ -3,6 +3,9 @@ package com.example.angelastore;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
 
 public interface Api {
 
@@ -15,10 +18,10 @@ public interface Api {
     @POST("Users/add")
     Call<ApiEnvelope<UserRegisterData>> register(@Body User body);
 
-    // PRODUCTS
-//    @GET("Products/")
-//    Call<ProductsEnvelopeResponse> listProducts();
-//
-//    @GET("Products/id/{id}")
-//    Call<ProductByIdEnvelopeResponse> getProductById(@Path("id") int id);
+
+    @GET("Products/")
+    Call<ApiEnvelopeProducts> listProducts();
+
+    @GET("Products/id/{id}")
+    Call<ApiEnvelopeProducts> getProductById(@Path("id") int id);
 }

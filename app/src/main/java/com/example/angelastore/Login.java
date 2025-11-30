@@ -1,12 +1,15 @@
 package com.example.angelastore;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,6 +65,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Login.this, Register.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -86,7 +90,40 @@ public class Login extends AppCompatActivity {
             errorMessageLogin.setText("Senha vazia my friend");
             return;
         }
-        Intent intent = new Intent(Login.this, Home.class);
-        startActivity(intent);
+        User user = new User(emailStr, senhaStr);
+
+        Call<ApiEnvelope<LoginData>> call = RetrofitClient.getInstance().getApi().login(user);
+
+        call.enqueue(new Callback<ApiEnvelope<LoginData>>() {
+            @Override
+            public void onResponse(Call<ApiEnvelope<LoginData>> call, Response<ApiEnvelope<LoginData>> response) {
+                if(response.body()!=null){
+                    ApiEnvelope<LoginData> env = response.body();
+
+                    if(env.getType().equals("success")){
+                        errorMessageLogin.setTextColor(Color.parseColor("#2ECC71"));
+                        errorMessageLogin.setText(env.getMessage());
+                        LoginData loginData = env.getData(); // aq tem user e token. Lembrar que o data sempre envolver user
+                        UserLoginData u = loginData.getUser();
+                        String token = loginData.getToken(); // Não vou usar
+
+                        getSharedPreferences("APP_PREFS", MODE_PRIVATE).edit().putString("TOKEN", token).apply();
+
+                        Intent intent = new Intent(Login.this, Home.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        errorMessageLogin.setText(env.getMessage());
+                        return;
+                    }
+                }else{
+                    errorMessageLogin.setText("Erro na API");
+                }
+            }
+            @Override
+            public void onFailure(Call<ApiEnvelope<LoginData>> call, Throwable t) {
+                    errorMessageLogin.setText("Falha na conexão: " + t.getMessage());
+            }
+        });
     }
 }
