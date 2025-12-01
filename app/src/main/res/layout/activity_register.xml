@@ -12,20 +12,23 @@
             android:layout_width="160dp"
             android:layout_height="41dp"
             android:layout_marginTop="1dp"
-            android:layout_marginRight="155dp"
-            android:backgroundTint="#FFF8E1"
-            android:paddingStart="1dp"
+            android:layout_marginRight="130dp"
+            android:paddingStart="-1dp"
             android:paddingTop="10.2dp"
             android:text="Termos e Condições"
             android:textColor="#9C27B0"
             android:textStyle="bold"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            style="?attr/borderlessButtonStyle"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/txtTermos"
             app:layout_constraintTop_toBottomOf="@+id/etConfirm" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
-            android:layout_width="372dp"
+            android:layout_width="340dp"
             android:layout_height="41dp"
             android:layout_marginTop="15dp"
             android:hint="fulano@gmail.com"
@@ -78,7 +81,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNome"
-            android:layout_width="372dp"
+            android:layout_width="340dp"
             android:layout_height="41dp"
             android:layout_marginTop="15dp"
             android:hint="Fulano da Silva"
@@ -99,7 +102,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etTelefone"
-            android:layout_width="372dp"
+            android:layout_width="340dp"
             android:layout_height="41dp"
             android:layout_marginTop="15dp"
             android:hint="XX XXXXX-XXXX"
@@ -120,7 +123,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etSenha"
-            android:layout_width="372dp"
+            android:layout_width="340dp"
             android:layout_height="41dp"
             android:layout_marginTop="15dp"
             android:hint="Mínimo 6 caracteres"
@@ -141,7 +144,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etConfirm"
-            android:layout_width="372dp"
+            android:layout_width="340dp"
             android:layout_height="41dp"
             android:layout_marginTop="15dp"
             android:hint="Confirme a senha acima"
@@ -189,7 +192,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-1dp"
             android:layout_marginRight="90dp"
-            android:backgroundTint="#FFF8E1"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            style="?attr/borderlessButtonStyle"
             android:paddingStart="1dp"
             android:paddingTop="10.2dp"
             android:text="Faça login"
@@ -203,11 +208,13 @@
             android:id="@+id/checkBox"
             android:layout_width="150dp"
             android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
             android:paddingStart="-1dp"
             android:text="Aceito os Termos"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="597dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnTermos" />
 
         <TextView
             android:id="@+id/registerErrorMessage"

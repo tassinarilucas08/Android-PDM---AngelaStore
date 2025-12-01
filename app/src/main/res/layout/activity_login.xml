@@ -41,14 +41,25 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
-            android:layout_width="372dp"
+            android:layout_width="340dp"
             android:layout_height="41dp"
             android:layout_marginTop="16dp"
             android:hint="Digite seu email"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.41"
+            app:layout_constraintHorizontal_bias="0.774"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSenha"
+            android:layout_width="340dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="16dp"
+            android:hint="Digite sua senha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.774"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSenha" />
 
         <TextView
             android:id="@+id/txtSenha"
@@ -59,17 +70,6 @@
             android:text="Senha"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLogin" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSenha"
-            android:layout_width="372dp"
-            android:layout_height="41dp"
-            android:layout_marginTop="16dp"
-            android:hint="Digite sua senha"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.41"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtSenha" />
 
         <Button
             android:id="@+id/btnEntrar"
@@ -87,7 +87,9 @@
             android:id="@+id/btnSenha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FDFDFC"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            style="?attr/borderlessButtonStyle"
             android:text="Esqueci minha senha"
             android:textColor="#9C27B0"
             android:textColorLink="#FDFDFC"
@@ -112,7 +114,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="-5dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#FDFDFC"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            style="?attr/borderlessButtonStyle"
             android:paddingStart="1dp"
             android:paddingTop="10.2dp"
             android:text="Cadastre-se"
